@@ -1,0 +1,27 @@
+{
+  "name": "vim-preview-monitor",
+  "version": "0.0.0",
+  "description": "NeoVim remote plugin to watch a file and display it in a preview window",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hash-bang/vim-preview-monitor.git"
+  },
+  "keywords": [
+    "neovim",
+    "preview",
+    "vim"
+  ],
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hash-bang/vim-preview-monitor/issues"
+  },
+  "homepage": "https://github.com/hash-bang/vim-preview-monitor#readme",
+  "dependencies": {
+    "chokidar": "^3.3.1"
+  }
+}
