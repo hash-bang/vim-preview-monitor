@@ -8,7 +8,7 @@ This project came about because I needed a non-intrucive method of displaying co
 How it works
 ------------
 
-1. When enabled on a buffer the directory tree is examined upwards until we hit the `mon_root_file`, this is then used as the project root
+1. When enabled on a buffer, the directory tree is examined upwards until we hit the `mon_root_file`, this is then used as the project root
 2. Set up a file system monitor for the `mon_file` within the discovered root directory
 3. When the file exists (or has a size above zero) we display the preview window within the tab showing its contents, when the file does not exist we close the preview window.
 
@@ -47,22 +47,22 @@ Commands
 Any of the following commands can be entered per-buffer in Normal Mode to enable monitoring behaviour.
 
 
-MonOn
------
+`MonOn`
+-------
 Enable the Monitor for this buffer using local variables to identify the project root / monitor file.
 
 
-MonOnLazy
----------
+`MonOnLazy`
+-----------
 Similar to `MonOn` but fail silently and disable if the buffer path cannot be determined or the project root directory cannot be located.
 
 
-MonOff
-------
+`MonOff`
+--------
 Disable monitoring for this buffer.
 
 
 Troubleshooting
 ===============
 NeoVim does not automatically refresh remote plugins.
-If any of the `Mon*` functions are not available try running `::UpdateRemotePlugins` to make NeoVim regenerate its cache.
+If any of the `Mon*` functions are not available try running `:UpdateRemotePlugins` to make NeoVim regenerate its cache.
