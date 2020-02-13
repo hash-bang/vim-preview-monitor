@@ -33,8 +33,6 @@ module.exports = function(plugin) {
 	var watchHandle; // Populated with the Chokidar instance
 
 	var monitorFunc = (monitor, stats) => {
-		plugin.nvim.outWrite(`Current size ${stats ? stats.size : 'NO STATS'}\n`)
-
 		if (stats && stats.size > 0) {
 			plugin.nvim.command(`pedit ${monitor.mon_window_opts} ${monitor.watchPath}`)
 		} else {
@@ -68,7 +66,7 @@ module.exports = function(plugin) {
 			};
 		})
 		// }}}
-		// Determine montitor.projectPath by scanning this dir upwards until we find a monitor.mon_root_file {{{
+		// Determine monitor.projectPath by scanning this dir upwards until we find a monitor.mon_root_file {{{
 		.then(monitor => new Promise((resolve, reject) => {
 			var scanPath = monitor.path;
 
@@ -93,7 +91,7 @@ module.exports = function(plugin) {
 		// }}}
 		// Display message {{{
 		.then(monitor => {
-			plugin.nvim.outWrite(`Monitoring project directory ${monitor.projectRoot}\n`);
+			plugin.nvim.outWrite(`Monitoring project directory ${monitor.projectPath}\n`);
 			return monitor;
 		})
 		// }}}
@@ -104,7 +102,8 @@ module.exports = function(plugin) {
 				awaitWriteFinish: true,
 				disableGlobbing: true,
 			})
-				.on('change', (path, stats) => monitorFunc(monitor, stats));
+				.on('change', (path, stats) => monitorFunc(monitor, stats))
+				.on('unlink', path => monitorFunc(monitor))
 
 			return monitor;
 		})
